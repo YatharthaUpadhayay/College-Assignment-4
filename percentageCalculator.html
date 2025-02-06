@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Percentage Calculator</title>
+</head>
+
+<body>
+    <h1>Percentage Calculator</h1>
+    <label>Subject 1:</label>
+    <input type="number" id="sub1"><br>
+    <br>
+    <label>Subject 2:</label>
+    <input type="number" id="sub2"><br>
+    <br>
+    <label>Subject 3:</label>
+    <input type="number" id="sub3"><br>
+    <br>
+    <label>Subject 4:</label>
+    <input type="number" id="sub4"><br>
+    <br>
+    <label>Subject 5:</label>
+    <input type="number" id="sub5"><br>
+    <br>
+    <button onclick="calculatePercentage()">Calculate Percentage</button>
+    <p id="result"></p>
+    <script>
+        function calculatePercentage() {
+            var sub1 = parseInt(document.getElementById("sub1").value);
+            var sub2 = parseInt(document.getElementById("sub2").value);
+            var sub3 = parseInt(document.getElementById("sub3").value);
+            var sub4 = parseInt(document.getElementById("sub4").value);
+            var sub5 = parseInt(document.getElementById("sub5").value);
+
+            var total = sub1 + sub2 + sub3 + sub4 + sub5;
+            var percentage = (total / 500) * 100;
+
+            var message
+            if (percentage >= 75) {
+                message = "Excellent performance!";
+            } else if (percentage >= 50) {
+                message = "Good job, keep improving!";
+            } else {
+                message = "You need to work harder.";
+            }
+
+            document.getElementById("result").innerText = "Percentage: " + percentage + "%" + "\n" + message;
+        }
+    </script>
+</body>
+
+</html>

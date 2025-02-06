@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Greeting</title>
+</head>
+<body>
+    <script>
+        var name = prompt("Enter your name: ");
+        var output = "";
+        var currDate = new Date();
+        if (currDate.getHours() < 12) {
+            output += "Good Morning ";
+        }
+        else {
+            output += "Good Evening ";
+        }
+        document.write(output + name);
+    </script>
+</body>
+</html>
