@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical Assignment</title>
+    <style>
+        body {
+            background-color: transparent;
+            background-image: radial-gradient(#000000 1px, #e5e5f7 1px);
+            background-size: 30px 30px;
+            width: 100%;
+            height: 100%;
+        }
+
+        button {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            background: #183153;
+            box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:after {
+            content: " ";
+            width: 0%;
+            height: 100%;
+            background: #ffd401;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            right: 0;
+        }
+
+        button:hover::after {
+            right: auto;
+            left: 0;
+            width: 100%;
+        }
+
+        button span {
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            padding: 18px 25px;
+            color: #fff;
+            font-size: 1.125em;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            z-index: 20;
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover span {
+            color: #183153;
+            animation: scaleUp 0.3s ease-in-out;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        input {
+            padding: 0.875rem;
+            font-size: 1rem;
+            border: 1.5px solid #000;
+            border-radius: 0.5rem;
+            box-shadow: 2.5px 3px 0 #000;
+            outline: none;
+            transition: ease 0.25s;
+        }
+
+        input:focus {
+            box-shadow: 5.5px 7px 0 black;
+        }
+
+        #number1,
+        #number2 {
+            margin: 8px;
+            text-align: center;
+            padding: 8px 16px;
+            width: 100%;
+        }
+
+        #whatToDo {
+            padding: 0.875rem;
+            font-size: 1rem;
+            border: 1.5px solid #000;
+            border-radius: 0.5rem;
+            box-shadow: 2.5px 3px 0 #000;
+            outline: none;
+            transition: ease 0.25s;
+        }
+
+        .outerDiv {
+            box-sizing: border-box;
+            background: rgba(217, 217, 217, 0.2);
+            border: 1px solid white;
+            box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(2px);
+            border-radius: 17px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+            font-weight: bolder;
+            color: black;
+            padding: 32px;
+        }
+
+        .outerDiv:hover {
+            border: 1px solid black;
+            transform: scale(1.05);
+            backdrop-filter: blur(6px);
+        }
+
+    </style>
+</head>
+
+<body style="display: grid; place-items: center; height: 100vh; padding: 0%; margin: 0%;">
+    <!-- Name: Yatharth Upadhayay (BCA First Year) -->
+    <div class="outerDiv" style="display: flex; flex-direction: column; align-items: center;">
+        <h1>Practical Assignment</h1>
+        <select name="whatToDo" id="whatToDo" style="margin: 8px; display: block; width: 100%; padding: 8px 16px;"
+            onchange="changeForLastProgram()">
+            <option value="1">Calculate the square root of a number</option>
+            <option value="2">Calculate the area of a Triangle</option>
+            <option value="3">Convert Kilometers to Miles</option>
+            <option value="4">Convert Celsius to Fahrenheit</option>
+            <option value="5">Swap two numbers</option>
+        </select>
+        <input type="number" id="number1" placeholder="Enter the value here">
+        <input type="number" id="number2" style="display: none; " placeholder="Second value here">
+        <p id="answer"></p>
+        <button type="submit" onclick="doTheWork()">
+            <span>Submit</span>
+        </button>
+    </div>
+
+    <script>
+        let selector = document.getElementById('whatToDo');
+        let number1 = document.getElementById('number1');
+        let number2 = document.getElementById('number2');
+        let answer = document.getElementById('answer');
+
+        function changeForLastProgram() {
+            if (selector.value == "5") {
+                number2.style.display = "block";
+                number1.placeholder = "First value here";
+                number2.placeholder = "Second value here";
+            }
+            else if (selector.value == "2") {
+                number2.style.display = "block";
+                number1.placeholder = "Enter the breath";
+                number2.placeholder = "Enter the height";
+            }
+            else {
+                number2.style.display = "none";
+            }
+        }
+
+        function doTheWork() {
+            switch (selector.value) {
+                case "1":
+                    answer.innerHTML = `The square root of ${number1.value} is: ${Math.sqrt(number1.value).toFixed(2)}`;
+                    break;
+
+                case "2":
+                    answer.innerHTML = `The area of the triangle is: ${((number1.value * number2.value) / 2).toFixed(2)}`;
+                    break;
+
+                case "3":
+                    answer.innerHTML = `${number1.value} km is: ${(number1.value / 1.609344).toFixed(2)} miles`;
+                    break;
+
+                case "4":
+                    answer.innerHTML = `${number1.value}°C is: ${((number1.value * 1.8) + 32).toFixed(2)}°F`;
+                    break;
+
+                case "5":
+                    let temp = number1.value;
+                    number1.value = number2.value;
+                    number2.value = temp;
+                    answer.innerHTML = `Now, the first number is ${number1.value} and second number is ${number2.value}`;
+                    break;
+
+                default:
+                    alert("Some error occured!");
+                    break;
+            }
+        }
+    </script>
+</body>
+
+</html>
